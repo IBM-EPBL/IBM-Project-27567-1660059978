@@ -1,0 +1,29 @@
+.card{
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 5px;
+}
+.marquee{
+    color: green;
+    text-shadow: #333;
+    text-decoration: underline;
+}
+
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+   
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    }
+
+.update{
+    background-color: black;
+}
+
+
+
