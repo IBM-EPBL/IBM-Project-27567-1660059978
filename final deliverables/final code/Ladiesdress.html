@@ -1,0 +1,570 @@
+{% extends "base.html"%}
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+        background: #2a2e32;
+    }
+
+    .text-small {
+        font-size: 0.9rem;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    a:hover,
+    a:focus {
+        text-decoration: none;
+    }
+
+    .form-control {
+        background: #212529;
+        border-color: #545454;
+    }
+
+    .form-control:focus {
+        background: #212529;
+    }
+
+    footer {
+        background: #212529;
+    }
+
+    /*=============
+ 
+==================*/
+    /* ==========================================
+    Rating stars
+  ========================================== */
+    .checked {
+        color: orange;
+    }
+
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+    #myInput {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 18px;
+    }
+
+    #myTable th,
+    #myTable td {
+        text-align: left;
+        padding: 12px;
+    }
+
+    #myTable tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    #myTable tr.header,
+    #myTable tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+
+
+
+<div style="background-color: rgba(0, 11, 86, 0.874);">
+    <marquee direction="left" style="color: white;font-size: larger;background-color: black;">Deals & special offer upto
+        20% wekend special sales upto 40% (Fashion sale for all products 50% offer shop now) </marquee>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-bottom: 20px;padding-left: 150px;">
+        <a class="navbar-brand" style="margin-left: 500px;font-weight: 900;">
+            <img src="{% static 'image/smart.png'%}" width="250" height="200" alt="">
+            <p style="font-family: 'Times New Roman', Times, serif;"><i class="fa fa-map-marker" aria-hidden="true">
+                    Smart
+                    Fashion, 44, Townhall Road, Coimbatore-641039</i></p>
+
+        </a>
+        <br>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup"
+          style="background-color: rgba(8, 7, 7, 0.923);padding-top: 20px;padding-bottom: 20px;border-radius: 20px;padding-left: 300px;">
+          <br>
+          <div class="navbar-nav">
+            <a href="{% url 'Ladiesdress'%}"><button class="btn btn-outline-success"
+                style="margin-left: 00px;color: white;margin-left: 40px;font-size: larger;border-radius: 10px;">Home</button></a>
+            <a href="{% url  'about'%}"><button class="btn btn-outline-success"
+                style="margin-left: 00px;color: white;margin-left: 130px;font-size: larger;border-radius: 10px;">About Online
+                Smart
+                Fashion </button></a>
+    
+
+                <button class="btn btn-outline-success"
+                style="margin-left: 00px;color: white;margin-left: 100px;font-size: larger;border-radius: 10px;"data-toggle="modal" data-target="#exampleModalCenter" style="margin-left: 1200px;">Ask Any Help??</button>
+            
+          <a href="{% url 'collection'%}">
+            <button class="btn btn-outline-danger"
+              style="margin-left: 00px;color: white;margin-left: 100px;font-size: larger;border-radius: 10px;">Logout</button></a>
+        </div>
+        <br>
+      </nav>
+      <br>
+    
+    <!---------->
+    <div id="carouselExampleFade"
+        style="color: rgba(0, 0, 0, 0.567);;padding-top: 5px;"
+        class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'image/shirt.jpg'%}" style="width: 300px; height: 500px" class="d-block w-100"
+                    alt="...">
+            </div>
+            <div class="carousel-item">
+                <img style="width: 100px; height: 500px;" src="{% static 'image/shirts.jpeg'%}" class="d-block w-100"
+                    alt="...">
+            </div>
+
+            <div class="carousel-item">
+                <img style="width: 300px; height: 500px;" src="{% static 'image/sares.jpg'%}" class="d-block w-100"
+                    at="...">
+            </div>
+
+        </div>
+        <button class="carousel-control-prev" style="background-color: black;" type="button"
+            data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+        </button>
+        <button class="carousel-control-next" style="background-color: black;" type="button"
+            data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+        </button>
+    </div>
+    <br>
+    <br>
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("mycard");
+            tr = table.getElementsByTagName("div");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("div")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <input type="text" id="myInput" style="border-radius: 20px;" onkeyup="myFunction()"
+        placeholder="Enter Saree Name, Saree Color, Rating..." title="Type in a name">
+    <br>
+    <br>
+
+    <div class="card_container">
+
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="mycard">
+            <div class="col" style="margin-left: 30px;">
+                <div class="card" style="width: 18rem;padding-bottom: 25px; ">
+                    <img src="{% static 'imagesaress/be1284763_m.webp'%}" height="350px" class="card-img-top" alt="...">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Kanchipuram Saree Navy Blue Color Saress Rating five Saree Available.
+                        </h5>
+                        <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <br>
+                        <i style="font-size:24px" class="fa">&#xf156; 5,000.00 </i>
+                        <br>
+                    </div>
+                    <a href="{% url 'KanchipuramBlue'%}"><button class="btn btn-success" style="padding-top: 5px;">Purchase
+                            Collection</button></a>
+                </div>
+            </div>
+
+
+            <div class="col" style="padding-bottom: 50px;">
+                <div class="card" style="width: 18rem;padding-bottom: 25px;">
+                    <img src="{% static 'image/sares1.jpg'%}" height="350px" class="card-img-top" alt="...">
+                    <div class="card-body">
+
+
+                        <h5 class="card-title">Kanchipuram Saree Red Color Rating Three Saress Available.</h5>
+
+                        <br>
+
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star "></span>
+                        <span class="fa fa-star"></span>
+
+                        <br>
+
+                        <i style="font-size:24px" class="fa">&#xf156; 5,000.00</i>
+                        <br>
+                    </div>
+
+                    <a href="{% url 'Kanchipuramred'%}"><button class="btn btn-success" style="padding-top: 5px;">Purchase
+                            Collection</button></a>
+                </div>
+            </div>
+
+            <div class="col" style="padding-bottom: 50px;">
+                <div class="card" style="width: 18rem;padding-bottom: 40px; ">
+                    <img src="{% static 'imagesaress/kashtri.jpg'%}" height="350px" class="card-img-top" alt="...">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Kanchipuram Kashta Saree Red Color Rating Four Saress Available.</h5>
+                        <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+                        <br>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <br>
+
+
+                        <i style="font-size:24px" class="fa">&#xf156;5,000.00</i>
+                        <br>
+
+                    </div>
+                    <a href="{% url 'KanchipuramredKashta'%}"><button class="btn btn-success" style="padding-top: 5px;">Purchase
+                            Collection</button></a>
+                </div>
+            </div>
+            <div class="col" style="width: 18rem;">
+                <div class="card" style="width: 18rem;padding-bottom: 40px;">
+                    <img src="{% static 'imagesaress/yellow.webp'%}" height="350px" class="card-img-top" alt="...">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Kanchipuram Saree yellow Color Rating Two Saress Available.</h5>
+                        <br>
+                        <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <br>
+                        <i style="font-size:24px" class="fa">&#xf156; 5,000.00</i>
+                        <br>
+                    </div>
+                    <a href="{% url 'Kanchipuramsareeyello'%}"><button class="btn btn-success" style="padding-top: 5px;">Purchase
+                            Collection</button></a>
+                </div>
+            </div>
+
+
+            <div class="col" style="width: 18rem;">
+                <div class="card" style="width: 18rem;padding-bottom: 40px;">
+                    <img src="{% static 'imagesaress/kanchh.jpg'%}" class="card-img-top" alt="...">
+                    <div class="card-body">
+
+
+                        <h5 class="card-title">Kanchipuram Saree Purple Color Rating Two Saress Available.</h5>
+                        <br>
+               
+                        <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <br>
+                        <i style="font-size:24px" class="fa">&#xf156; 5,000.00</i>
+                        <br>
+                        <br>
+
+                        <a href="{% url 'Kanchipuramsarepurple'%}"><button class="btn btn-success"
+                                style="padding-top: 5px;">Purchase
+                                Collection</button></a>
+                    </div>
+                </div>
+            
+
+            </div>
+
+            <br>
+            <div class="col" style="width: 18rem;margin-left: 30px;">
+                <div class="card" style="width: 18rem;padding-bottom: 40px;">
+                    <img src="{% static 'imagesaress/mysoree.jpg' %}" height="350px" class="card-img-top" alt="...">
+                    <div class="card-body">
+
+
+                        <h5 class="card-title">Mysore Saree Pink Color Rating Three Saress Available.</h5>
+                        <br>
+
+                        <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <br>
+                        <i style="font-size:24px" class="fa">&#xf156; 5,000.00</i>
+                        <br>
+                        <br>
+
+                        <a href="{% url 'Mysoresareepink'%}"><button class="btn btn-success"
+                                style="padding-top: 5px;">Purchase
+                                Collection</button></a>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+            <div class="col" style="width: 18rem;">
+                <div class="card" style="width: 18rem;padding-bottom: 40px;">
+                    <img src="{% static 'imagesaress/81ikxt8CfuL._UL1500_.jpg'%}" height="340px" class="card-img-top"
+                        alt="...">
+                    <div class="card-body">
+
+
+                        <h5 class="card-title">Mysore Crepe Saree Green Color Rating Four Saress Available.</h5>
+
+                        <br>
+                        <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <br>
+                        <i style="font-size:24px" class="fa">&#xf156; 5,000.00</i>
+                        <br>
+                        <br>
+
+                        <a href="{% url 'Mysorecrepe'%}"><button class="btn btn-success"
+                                style="padding-top: 5px;">Purchase
+                                Collection</button></a>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+            <div class="col" style="width: 18rem;">
+                <div class="card" style="width: 18rem;padding-bottom: 40px;">
+                    <img src="{% static 'imagesaress/mysore.jpg'%}" height="340px" class="card-img-top" alt="...">
+                    <div class="card-body">
+
+
+                        <h5 class="card-title">Mysore Wedding Saree Red Color Rating Five Saress Available.</h5>
+                        <br>
+
+                        <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <br>
+                        <i style="font-size:24px" class="fa">&#xf156; 5,000.00</i>
+                        <br>
+                        <br>
+
+                        <a href="{% url 'Mysorewedding'%}"><button class="btn btn-success"
+                                style="padding-top: 5px;">Purchase
+                                Collection</button></a>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+            <div class="col" style="width: 18rem;">
+                <div class="card" style="width: 18rem;padding-bottom: 40px;">
+                    <img src="{% static 'imagesaress/Black-Mysore-Silk-Saree.jpg.jpg'%}" height="325px"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+
+
+                        <h5 class="card-title">Mysore Saree Black Color Rating Three Saress Available.</h5>
+                        <br>
+                        <br>
+                        <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <br>
+                        <i style="font-size:24px" class="fa">&#xf156; 5,000.00</i>
+                        <br>
+                        <br>
+
+                        <a href="{% url 'Mysoreblack'%}"><button class="btn btn-success"
+                                style="padding-top: 5px;">Purchase
+                                Collection</button></a>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+            <div class="col" style="width: 18rem;">
+                <div class="card" style="width: 18rem;padding-bottom: 40px;">
+                    <img src="{% static 'imagesaress/Mysore-silk-sarees-6.jpg'%}" height="335px" class="card-img-top" alt="...">
+                    <div class="card-body">
+
+
+                        <h5 class="card-title">Mysore Silk Blue Color Rating Four Saress Available.</h5>
+                        <br>
+                        <br>
+                        <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <br>
+                        <i style="font-size:24px" class="fa">&#xf156; 5,000.00</i>
+                        <br>
+                        <br>
+
+                        <a href="{% url 'Mysoresilkblue'%}"><button class="btn btn-success"
+                                style="padding-top: 5px;">Purchase
+                                Collection</button></a>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+
+
+
+            <br>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+                style="margin-left: 1200px;">
+                Ask Your Question??
+            </button>
+            <br>
+            <br>
+            <!-- Chatbot -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Smart Fashion Chatbot</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <h3 style="color: black;text-align: center;">Ask Your Question??</h3>
+                            <div class="input">
+                                <input type="search" id="userBox"
+                                    style="margin-left: 30px;width: 350px;border-radius: 20px;border: black;padding-top: 10px;padding-bottom: 10px;"
+                                    onkeydown="if(event.keyCode == 13){ talk()}" placeholder="Type your Question" />
+                            </div>
+                            <br>
+                            <p id="chatLog"
+                                style="font-size: larger;color: rgb(0, 0, 0);text-shadow: #212529;margin-left: 40px;">
+                            </p>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+<!-- FOOTER -->
+<div class="d-flex flex-column h-100">
+    <footer class="w-100 py-4 flex-shrink-0">
+        <div class="container py-4">
+            <div class="row gy-4 gx-5">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="h1 text-white">Smart Fashion</h5>
+                    <p class="small text-muted">44, Townhall Road, Coimbatore-641039.</p>
+                    <p class="small text-muted mb-0">&copy; Copyrights. All rights reserved. <a class="text-primary"
+                            href="#">smartfashion.com</a></p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-white mb-3">Newsletter</h5>
+                    <p class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor
+                        incididunt.</p>
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" placeholder="Recipient's username"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" id="button-addon2" type="button"><i
+                                    class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+
+{% endblock %}

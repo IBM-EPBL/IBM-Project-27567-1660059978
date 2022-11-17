@@ -1,0 +1,209 @@
+{%extends "base.html"%}
+{% block content %}
+{% load static %}
+<style>
+    body {
+        background-color: rgb(12, 7, 133);
+        font-family: Arial;
+        font-size: 17px;
+        padding: 8px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap;
+        /* IE10 */
+        flex-wrap: wrap;
+        margin: 0 -16px;
+    }
+
+    .col-25 {
+        -ms-flex: 25%;
+        /* IE10 */
+        flex: 25%;
+    }
+
+    .col-50 {
+        -ms-flex: 50%;
+        /* IE10 */
+        flex: 50%;
+    }
+
+    .col-75 {
+        -ms-flex: 75%;
+        /* IE10 */
+        flex: 75%;
+    }
+
+    .col-25,
+    .col-50,
+    .col-75 {
+        padding: 0 16px;
+    }
+
+    .container {
+        background-color: rgba(255, 255, 255, 0.76);
+        padding: 5px 20px 15px 20px;
+        border: 1px solid rgb(6, 0, 0);
+        border-radius: 3px;
+    }
+
+    input[type=text] {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    label {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .icon-container {
+        margin-bottom: 20px;
+        padding: 7px 0;
+        font-size: 24px;
+    }
+
+    .btn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        width: 100%;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 17px;
+    }
+
+    .btn:hover {
+        background-color: #45a049;
+    }
+
+    a {
+        color: #2196F3;
+    }
+
+    hr {
+        border: 1px solid lightgrey;
+    }
+
+    span.price {
+        float: right;
+        color: grey;
+    }
+
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+    @media (max-width: 800px) {
+        .row {
+            flex-direction: column-reverse;
+        }
+
+        .col-25 {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+
+
+<body>
+    <br>
+
+    <div class="row">
+        <div class="col-75">
+            <div class="container">
+                <form  method="POST" action="{% url 'KanchipuramBlue'%}" name="myform">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-50">
+                            <h3>Billing Address</h3>
+                            <h4 style="text-decoration: underline;">Customer Details</h4>
+
+                            <label for="fname">Customer Name</label>
+                            <input type="text" id="fname" name="firstname" placeholder="Enter Customer Name" required>
+                            <label for="email"> Email</label>
+                            <input type="text" id="email" name="email" placeholder="Enter Customer Email"required>
+                            <label for="email"> Contact </label>
+                            <input type="text" name="contact" placeholder="Enter Customer Contact" required>
+                            <label for="adr">Address</label>
+                            <input type="text" id="adr" name="address" placeholder="Enter Address"required>
+                            <h4 style="text-decoration: underline;">Dress Details</h4>
+
+                            <label for="city">Dress Name</label>
+                            <input type="text" id="city" name="dressname" value="Kanchipuram Saree"required>
+                            <label for="city">Dress Color</label>
+                            <input type="text" id="city" name="color" value="Navy Blue Color"required>
+                            <label for="city">Select size</label>
+
+                            <select class="form-control" name="selectsize" required>
+                                <option selected disabled> </option>
+                                <option value="7meters">7 Meters</option>
+                                <option value="8meters">8 Meters</option>
+
+
+                            </select>
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="state">Price</label>
+                                    <input type="text" name="total_cost" id="total_cost" value="5000"required>
+                                </div>
+                                <div class="col-50">
+                                    <label for="zip">Quantity</label>
+                                    <input type="text" name="Quantity" onkeyup="calculate(this.value)" required>
+                                </div>
+                                <div class="col-50">
+                                    <label for="zip">Total Price</label>
+                                    <input type="text" name="total_Amount" required>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="col-50">
+                            <h3 style="text-decoration: underline;">Dress Image</h3>
+                            <div class="icon-container">
+                                <img src="{% static 'imagesaress/be1284763_m.webp'%}" width="120px" alt="">
+                            </div>
+                            <h4 style="text-decoration: underline;">Online Payment Method</h4>
+                            <option selected disabled>Select Payment Method</option>
+                            <select class="form-control" name="paymenttype" required>
+                                <option selected disabled> </option>
+                                <option value="Paytm">Paytm</option>
+                                <option value="GooglePay">GooglePay</option>
+                                <option value="Freecharge">Freecharge</option>
+                                <option value="YonoSBI">YonoSBI</option>
+                                <option value="Payzapp">Payzapp</option>
+
+                            </select>
+
+                            <label for="ccnum">Credit card number</label>
+                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required>
+                            <label for="expmonth">Delivery Date</label>
+                            <input type="text" id="expmonth" name="deliverydate" value="07/07/2023" required>
+                            
+                        </div>
+
+                    </div>
+                    <label>
+                    </label>
+                    <input type="submit" class="btn btn-success" value="Book Now" class="btn">
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+{% endblock %}

@@ -1,0 +1,529 @@
+{% extends "base.html"%}
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+        background: #021ad2;
+    }
+
+    .text-small {
+        font-size: 0.9rem;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    a:hover,
+    a:focus {
+        text-decoration: none;
+    }
+
+    .form-control {
+        background: #212529;
+        border-color: #545454;
+    }
+
+    .form-control:focus {
+        background: #212529;
+    }
+
+    footer {
+        background: #212529;
+    }
+
+
+    /* ==========================================
+    CUSTOM UTILS CLASSES
+  ========================================== */
+</style>
+
+
+
+
+
+<marquee direction="left" style="color: white;font-size: larger;background-color: black;">Deals & special offer upto
+    20% wekend special sales upto 40% (Fashion sale for all products 50% offer shop now) </marquee>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-bottom: 20px;padding-left: 150px;">
+    <a class="navbar-brand" href="{% url 'home'%}" style="margin-left: 500px;font-weight: 900;">
+        <img src="{% static 'image/smart.png'%}" width="250" height="200" alt="">
+        <p style="font-family: 'Times New Roman', Times, serif;"><i class="fa fa-map-marker" aria-hidden="true"> Smart
+                Fashion, 44, Townhall Road, Coimbatore-641039</i></p>
+    </a>
+
+    <br>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-example2">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup"
+        style="background-color: rgba(8, 7, 7, 0.923);padding-top: 20px;padding-bottom: 20px;border-radius: 20px;">
+        <br>
+        <div class="navbar-nav">
+            <a href="{% url 'admin_page'%}"><button class="btn btn-outline-success" data-toggle="modal"
+                    data-target="#exampleModalLong"
+                    style="margin-left: 150px;color: white;font-size: larger;border-radius: 20px;">
+                    Home</button></a>
+            <div class="dropdown">
+                <button type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" style="margin-left: 150px;color: white;font-size: larger;border-radius: 20px;" aria-expanded="false" class="btn btn-outline-success">
+                   Add Men's Dress Collection
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalLong1">Lycra Shirt</a>
+                    <a class="dropdown-item" href="#"  data-toggle="modal" data-target="#exampleModalshirts">Lycra Pant</a>
+                    <a class="dropdown-item" href="#"  data-toggle="modal" data-target="#exampleModalvestishirts">Vestiandshirts</a>
+                    <a class="dropdown-item" href="#"  data-toggle="modal" data-target="#exampleModaltshit">T-shirts</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalvestishirtspattu">Vestiandshirtspattu</a>
+
+                </div>
+            </div>
+            <li class="nav-item">
+                <a class="btn btn-outline-success"
+                    style="color: white;margin-left: 100px;font-size: larger;border-radius: 20px;"
+                    href="#Boys Collection Details" style="color: white;">Boys Collection Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-success"
+                    style="color: white;margin-left: 100px;font-size: larger;border-radius: 20px;"
+                    href="#Girls Collection Details" style="color: white;">Girls Collection Details</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="btn btn-outline-success"
+                    style="color: white;margin-left: 100px;font-size: larger;border-radius: 20px;" href="#GetInTouch"
+                    style="color: white;">Get In Touch Details</a>
+            </li>
+
+
+            <a href="{% url 'home'%}">
+                <button class="btn btn-outline-danger"
+                    style="color: white;margin-left: 100px;font-size: larger;border-radius: 20px;">Logout
+                </button></a>
+        </div>
+        <br>
+</nav>
+<br>
+<br>
+
+
+<!---------->
+
+
+<!-- 
+<h1 style="color: white;text-decoration: underline;text-align: center;font-family: 'Times New Roman', Times, serif;"
+    id="GetInTouch">
+    Lycra Pant</h1>
+<div style="padding-right: 10px;">
+    <table class="table table-bordered" style="padding-right: 50px;">
+        <thead style="background-color: rgba(255, 255, 255, 0.874);">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Dress Namme</th>
+                <th scope="col">Dress Description</th>
+                <th scope="col">Dress Amount</th>
+                <th scope="col">Action</th>
+
+
+            </tr>
+        </thead>
+        <tbody style="background-color: rgba(255, 243, 243, 0.518);">
+            {% for lycrapants in lycrapants %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{lycrapants.dress_name}}</td>
+                <td> <img src="{{lycrapants.dressimages.url}}" height="150px" width="50px" class="card-img-top" alt="..."></td>
+                <td>{{lycrapants.dress_amount}}</td>
+                <td><button class="btn btn-success" ata-toggle="modal" style="margin-right: 40px;"
+                        data-target="#exampleModalupdate{{smartpayment.id}}">Update</button>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+
+
+<h1 style="color: white;text-decoration: underline;text-align: center;font-family: 'Times New Roman', Times, serif;"
+    id="GetInTouch">
+    Vesti and Shirt</h1>
+<div style="padding-right: 10px;">
+    <table class="table table-bordered" style="padding-right: 50px;">
+        <thead style="background-color: rgba(255, 255, 255, 0.874);">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Dress Namme</th>
+                <th scope="col">Dress Description</th>
+                <th scope="col">Dress Amount</th>
+                <th scope="col">Action</th>
+
+
+            </tr>
+        </thead>
+        <tbody style="background-color: rgba(255, 243, 243, 0.518);">
+            {% for vestis in vestis %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{vestis.dress_name}}</td>
+                <td> <img src="{{vestis.dressimages.url}}" height="150px" width="50px" class="card-img-top" alt="..."></td>
+                <td>{{vestis.dress_amount}}</td>
+                <td><button class="btn btn-success" ata-toggle="modal" style="margin-right: 40px;"
+                        data-target="#exampleModalupdate{{smartpayment.id}}">Update</button>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+
+<h1 style="color: white;text-decoration: underline;text-align: center;font-family: 'Times New Roman', Times, serif;"
+    id="GetInTouch">
+    T-shirt</h1>
+<div style="padding-right: 10px;">
+    <table class="table table-bordered" style="padding-right: 50px;">
+        <thead style="background-color: rgba(255, 255, 255, 0.874);">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Dress Namme</th>
+                <th scope="col">Dress Description</th>
+                <th scope="col">Dress Amount</th>
+                <th scope="col">Action</th>
+
+
+            </tr>
+        </thead>
+        <tbody style="background-color: rgba(255, 243, 243, 0.518);">
+            {% for shirts in shirts %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{shirts.dress_name}}</td>
+                <td> <img src="{{shirts.dressimages.url}}" height="150px" width="50px" class="card-img-top" alt="..."></td>
+                <td>{{shirts.dress_amount}}</td>
+                <td><button class="btn btn-success" ata-toggle="modal" style="margin-right: 40px;"
+                        data-target="#exampleModalupdate{{smartpayment.id}}">Update</button>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+
+
+<h1 style="color: white;text-decoration: underline;text-align: center;font-family: 'Times New Roman', Times, serif;"
+    id="GetInTouch">
+    Jean Shirt</h1>
+<div style="padding-right: 10px;">
+    <table class="table table-bordered" style="padding-right: 50px;">
+        <thead style="background-color: rgba(255, 255, 255, 0.874);">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Dress Namme</th>
+                <th scope="col">Dress Description</th>
+                <th scope="col">Dress Amount</th>
+                <th scope="col">Action</th>
+
+
+            </tr>
+        </thead>
+        <tbody style="background-color: rgba(255, 243, 243, 0.518);">
+            {% for address in address %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{address.dress_name}}</td>
+                <td> <img src="{{address.dressimages.url}}" height="150px" width="50px" class="card-img-top" alt="..."></td>
+                <td>{{address.dress_amount}}</td>
+                <td><button class="btn btn-success" ata-toggle="modal" style="margin-right: 40px;"
+                        data-target="#exampleModalupdate{{smartpayment.id}}">Update</button>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+
+
+<h1 style="color: white;text-decoration: underline;text-align: center;font-family: 'Times New Roman', Times, serif;"
+    id="GetInTouch">
+    vesti and shirt pattu</h1>
+<div style="padding-right: 10px;">
+    <table class="table table-bordered" style="padding-right: 50px;">
+        <thead style="background-color: rgba(255, 255, 255, 0.874);">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Dress Namme</th>
+                <th scope="col">Dress Description</th>
+                <th scope="col">Dress Amount</th>
+                <th scope="col">Action</th>
+
+
+            </tr>
+        </thead>
+        <tbody style="background-color: rgba(255, 243, 243, 0.518);">
+            {% for vestiandshirrtspattus in vestiandshirrtspattus %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{vestiandshirrtspattus.dress_name}}</td>
+                <td> <img src="{{vestiandshirrtspattus.dressimages.url}}" height="150px" width="50px" class="card-img-top" alt="..."></td>
+                <td>{{vestiandshirrtspattus.dress_amount}}</td>
+                <td><button class="btn btn-success" ata-toggle="modal" style="margin-right: 40px;"
+                        data-target="#exampleModalupdate{{smartpayment.id}}">Update</button>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div> -->
+
+
+
+
+
+
+
+
+
+<h1 style="color: white;text-decoration: underline;text-align: center;font-family: 'Times New Roman', Times, serif;"
+    id="Boys Collection Details">
+    Boys Dress Collection Total Payment Details Table</h1>
+<div style="padding-left: 10px; padding-right: 10px;">
+    <table class="table table-bordered" style="padding-right: 50px;">
+        <thead style="background-color: rgba(255, 255, 255, 0.874);">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Id</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Customer Email</th>
+                <th scope="col">Customer Phone Number</th>
+                <th scope="col">Customer Address</th>
+                <th scope="col">Dress Name</th>
+                <th scope="col">Dress Color</th>
+                <th scope="col">Dress Size</th>
+                <th scope="col">Dress Price</th>
+                <th scope="col">Dress Quantity</th>
+                <th scope="col">Dress Total Amount</th>
+                <th scope="col">Paymethod Type</th>
+                <th scope="col">Delivery Date</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody style="background-color: rgba(255, 243, 243, 0.518);">
+            {% for smartpayment in smartpayment %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{smartpayment.id}}</td>
+                <td>{{smartpayment.Customername}}</td>
+                <td>{{smartpayment.customeremail}}</td>
+                <td>{{smartpayment.customerphnumber}}</td>
+                <td>{{smartpayment.customeraddress}}</td>
+                <td>{{smartpayment.dressname}}</td>
+                <td>{{smartpayment.size}}</td>
+                <td>{{smartpayment.dresscolor}}</td>
+                <td>{{smartpayment.dressprice}}</td>
+                <td>{{smartpayment.dressqnty}}</td>
+                <td>{{smartpayment.dressamount}}</td>
+                <td>{{smartpayment.paymentstype}}</td>
+                <td>{{smartpayment.deliverydate}}</td>
+                <td><button type="button" class="btn btn-danger" data-toggle="modal"
+                        data-target="#exampleModalDelete{{smartpayment.id}}">
+                        Delete
+                    </button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+
+
+
+
+
+
+<h1 style="color: white;text-decoration: underline;text-align: center;font-family: 'Times New Roman', Times, serif;"
+    id="Girls Collection Details">
+    Girl's Dress Collection Total Payment Details Table</h1>
+<div style="padding-left: 10px; padding-right: 10px;">
+    <table class="table table-bordered" style="padding-right: 50px;">
+        <thead style="background-color: rgba(255, 255, 255, 0.874);">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">ID</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Customer Email</th>
+                <th scope="col">Customer Phone Number</th>
+                <th scope="col">Customer Address</th>
+                <th scope="col">Dress Name</th>
+                <th scope="col">Dress Color</th>
+                <th scope="col">Dress Size</th>
+                <th scope="col">Dress Price</th>
+                <th scope="col">Dress Quantity</th>
+                <th scope="col">Dress Total Amount</th>
+                <th scope="col">Paymethod Type</th>
+                <th scope="col">Delivery Date</th>
+                <th scope="col">Action</th>
+
+
+            </tr>
+        </thead>
+        <tbody style="background-color: rgba(255, 243, 243, 0.518);">
+            {% for smarts in smarts %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <th scope="row">{{smarts.id}}</th>
+                <td>{{smarts.Customername}}</td>
+                <td>{{smarts.customeremail}}</td>
+                <td>{{smarts.customerphnumber}}</td>
+                <td>{{smarts.customeraddress}}</td>
+                <td>{{smarts.dressname}}</td>
+                <td>{{smarts.dresscolor}}</td>
+                <td>{{smarts.dresssize}}</td>
+
+                <td>{{smarts.dressprice}}</td>
+                <td>{{smarts.dressqnty}}</td>
+                <td>{{smarts.dressamount}}</td>
+                <td>{{smarts.paymentstype}}</td>
+                <td>{{smarts.deliverydate}}</td>
+                <td><button type="button" class="btn btn-danger" data-toggle="modal"
+                        data-target="#exampleModalDelete{{smarts.id}}">
+                        Delete
+                    </button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+
+<br>
+<h1 style="color: white;text-decoration: underline;text-align: center;font-family: 'Times New Roman', Times, serif;"
+    id="GetInTouch">
+    Getintouch Details Table</h1>
+<div style="padding-left: 10px; padding-right: 10px;">
+    <table class="table table-bordered" style="padding-right: 50px;">
+        <thead style="background-color: rgba(255, 255, 255, 0.874);">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">ID</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Customer Email</th>
+                <th scope="col">Customer Phone Number</th>
+
+            </tr>
+        </thead>
+        <tbody style="background-color: rgba(255, 243, 243, 0.518);">
+            {% for getintouch in getintouch %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{getintouch.id}}</td>
+                <td>{{getintouch.name}}</td>
+                <td>{{getintouch.email}}</td>
+                <td>{{getintouch.message}}</td>
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+<br>
+
+<!-- FOOTER -->
+<div class="d-flex flex-column h-100">
+    <footer class="w-100 py-4 flex-shrink-0">
+        <div class="container py-4">
+            <div class="row gy-4 gx-5">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="h1 text-white">Smart Fashion</h5>
+                    <p class="small text-muted">44, Townhall Road, Coimbatore-541039 .</p>
+                    <p class="small text-muted mb-0">&copy; Copyrights. All rights reserved. <a class="text-primary"
+                            href="#">smartfashion.com</a></p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="{% url 'home'%}">Home</a></li>
+                        <li><a href="{% url 'about'%}">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-white mb-3">Newsletter</h5>
+                    <p class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor
+                        incididunt.</p>
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" placeholder="Recipient's username"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" id="button-addon2" type="button"><i
+                                    class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+{% include "update.html"%}
+{% include "delete.html"%}
+{% include "add.html"%}
+
+{% endblock %}

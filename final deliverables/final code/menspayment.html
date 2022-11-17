@@ -1,0 +1,406 @@
+{% extends "base.html"%}
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+        background: rgb(0, 11, 86);
+    }
+
+    .text-small {
+        font-size: 0.9rem;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    a:hover,
+    a:focus {
+        text-decoration: none;
+    }
+
+    .form-control {
+        background: #ffffff;
+        border-color: #000000;
+    }
+
+    .form-control:focus {
+        background: #f3f4f6;
+    }
+
+    footer {
+        background: #212529;
+    }
+
+    /*=============
+ 
+==================*/
+    /* ==========================================
+    Rating stars
+  ========================================== */
+    .checked {
+        color: orange;
+    }
+
+
+    .gradient-custom-2 {
+        /* fallback for old browsers */
+        background: #fccb90;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    }
+
+    @media (min-width: 768px) {
+        .gradient-form {
+            height: 100vh !important;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .gradient-custom-2 {
+            border-top-right-radius: .3rem;
+            border-bottom-right-radius: .3rem;
+        }
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+    }
+
+    .rate:not(:checked)>input {
+        position: absolute;
+        top: -9999px;
+    }
+
+    .rate:not(:checked)>label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+    .rate:not(:checked)>label:before {
+        content: '★ ';
+    }
+
+    .rate>input:checked~label {
+        color: #ffc700;
+    }
+
+    .rate:not(:checked)>label:hover,
+    .rate:not(:checked)>label:hover~label {
+        color: #deb217;
+    }
+
+    .rate>input:checked+label:hover,
+    .rate>input:checked+label:hover~label,
+    .rate>input:checked~label:hover,
+    .rate>input:checked~label:hover~label,
+    .rate>label:hover~input:checked~label {
+        color: #c59b08;
+    }
+
+    /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+</style>
+
+
+
+
+
+<marquee direction="left" style="color: white;font-size: larger;background-color: black;">Deals & special offer upto
+    20% wekend special sales upto 40% (Fashion sale for all products 50% offer shop now) </marquee>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-bottom: 20px;padding-left: 150px;">
+    <a class="navbar-brand" href="{% url 'home'%}" style="margin-left: 500px;font-weight: 900;">
+        <img src="{% static 'image/smart.png'%}" width="250" height="200" alt="">
+        <p style="font-family: 'Times New Roman', Times, serif;"><i class="fa fa-map-marker" aria-hidden="true"> Smart
+                Fashion, 44, Townhall Road, Coimbatore-641039</i></p>
+    </a>
+
+    <br>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-top: 5px;padding-bottom: 5px;">
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup"
+        style="background-color: rgba(8, 7, 7, 0.923);padding-top: 20px;padding-bottom: 20px;border-radius: 20px;">
+        <br>
+        <div class="navbar-nav">
+            <a href="{% url 'home'%}"><button class="btn btn-outline-success"
+                    style="margin-left: 00px;color: white;margin-left: 50px;font-size: larger;border-radius: 20px;">Home</button></a>
+            <a href="{% url  'about'%}"><button class="btn btn-outline-success"
+                    style="margin-left: 00px;color: white;margin-left: 70px;font-size: larger;border-radius: 20px;">About
+                    Online
+                    Smart
+                    Fashion </button></a>
+
+
+            <a href="{% url 'login'%}"><button class="btn btn-outline-success" data-toggle="modal"
+                    data-target="#exampleModalLong"
+                    style="margin-left: 80px;color: white;font-size: larger;border-radius: 20px;">Pucharse
+                    Collection</button></a>
+        </div>
+        <a href="">
+            <button class="btn btn-outline-success"
+                style="margin-left: 00px;color: white;margin-left: 100px;font-size: larger;border-radius: 20px;">Admin
+                Login</button></a>
+        <a href="{% url 'wedding'%}">
+            <button class="btn btn-outline-success"
+                style="margin-left: 00px;color: white;margin-left: 100px;font-size: larger;border-radius: 20px;">Wedding
+                Collection</button></a>
+        <a href="">
+            <button class="btn btn-outline-success"
+                style="margin-left: 00px;color: white;margin-left: 100px;font-size: larger;border-radius: 20px;">Get In
+                Touch</button></a>
+    </div>
+    <br>
+</nav>
+<br>
+
+
+<!---------->
+
+
+<section class="h-100 gradient-form">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
+
+                                <div class="text-center">
+                                    <img src="{% static 'image/smart.png'%} " style="width: 185px;" alt="logo">
+
+                                </div>
+                                <br>
+
+                                <form method="POST" action="{% url 'menspayment'%}" name="myform">
+                                    {% csrf_token %}
+                                    <br>
+                                    <h4 style="text-decoration: underline;">Customer Details</h4>
+                                    <option selected disabled>Customer Name</option>
+                                    <input type="text" id="form2Example22" name="customername"
+                                        placeholder="Enter The Customer Name" style="border-radius: 5px;"
+                                        class="form-control" />
+                                    <br>
+                                    <option selected disabled>Customer Phone Number</option>
+                                    <input type="text" id="form2Example22" name="customerphone"
+                                        placeholder="Enter The Phone Number" style="border-radius: 5px;"
+                                        class="form-control" />
+                                    <br>
+
+                                    <option selected disabled>Customer Address</option>
+                                    <input type="text" id="form2Example22" name="customeraddress"
+                                        placeholder="Enter The Phone Number" style="border-radius: 5px;"
+                                        class="form-control" />
+                                    <br>
+                                    <option selected disabled>Dress Name</option>
+                                    <input type="text" id="form2Example22" name="drename" value='Mens Wedding Dress'
+                                        placeholder="Enter Dress Name" style="border-radius: 5px;"
+                                        class="form-control" />
+                                    <br>
+
+                                    <option selected disabled>Dress Price</option>
+                                    <input type="text" name="total_cost" style="border-radius: 5px;" placeholder="Price"
+                                        class="form-control" >
+                                    <br>
+                                    <option selected disabled>Enter The Quantity</option>
+                                    <input type="text" name="Quantity" placeholder="Enter Quantiyt"
+                                        onkeyup="calculate(this.value)" style="border-radius: 5px;"
+                                        class="form-control" />
+                                    <br>
+                                    <p>Total Amount: <br>
+                                        <input type="text" name="total_Amount" placeholder="Enter Card Number"
+                                            style="border-radius: 5px;" class="form-control" />
+                                        <br>
+                                    <h4 style="text-decoration: underline;">Online Payment Method</h4>
+                                    <option selected disabled>Select Payment Method</option>
+                                    <select class="form-control" name="paymenttype">
+                                        <option selected disabled> </option>
+                                        <option value="Paytm">Paytm</option>
+                                        <option value="GooglePay">GooglePay</option>
+                                        <option value="Freecharge">Freecharge</option>
+                                        <option value="YonoSBI">YonoSBI</option>
+                                        <option value="Payzapp">Payzapp</option>
+
+                                    </select>
+                                    
+                                    <br>
+                                    <option selected disabled>Account Number</option>
+                                    <input type="text" name="cardnumber" placeholder="Enter Card Number"
+                                        style="border-radius: 5px;" class="form-control" />
+                                    <br>
+                                    <!-- <option selected disabled>Customer Rating</option>
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="starone" value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="starone" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="starone" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="starone" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="starone" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div> -->
+
+                                    <option selected disabled>Delivery Date</option>
+                                    <input type="text" name="Deliverydate" value="10/04/2023"
+                                        placeholder="Enter Card Number" style="border-radius: 5px;"
+                                        class="form-control" />
+                                    <br>
+
+
+
+                                    <div class="text-center pt-1 mb-5 pb-1">
+                                        <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                            style=" padding-top: 20px;padding-bottom: 20px;" type="submit">BOOK NOW
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                <img src="{% static 'image/menswedding.webp'%}" class="card-img-top" alt="...">
+                                <div class="card-body">
+
+                                    <i style="font-size:24px;color: #ffffff;" class="fa">&#xf156;
+                                        4000.00
+                                    </i><br>
+                                    <h5 class="card-title">Men's Wedding Dress</h5>
+                                    <p class="card-text">All Men's Wedding Collection Available.</p>
+                                    <!-- <a href="#" class="btn btn-danger">View Collection</a> -->
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <br>
+                                    <br>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+<!---------->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+
+
+
+<script>
+
+</script>
+<!-- FOOTER -->
+<div class="d-flex flex-column h-100" style="padding-top: 230px;">
+    <footer class="w-100 py-4 flex-shrink-0">
+        <div class="container py-4">
+            <div class="row gy-4 gx-5">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="h1 text-white">Smart Fashion</h5>
+                    <p class="small text-muted">44, Townhall Road, Coimbatore-641039.</p>
+                    <p class="small text-muted mb-0">&copy; Copyrights. All rights reserved. <a class="text-primary"
+                            href="#">smartfashion.com</a></p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-white mb-3">Newsletter</h5>
+                    <p class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor
+                        incididunt.</p>
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" placeholder="Recipient's username"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" id="button-addon2" type="button"><i
+                                    class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+
+
+{% endblock %}

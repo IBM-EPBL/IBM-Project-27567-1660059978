@@ -1,0 +1,94 @@
+<style>
+    body {
+        background: #002ee8;
+    }
+
+    .text-small {
+        font-size: 0.9rem;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    a:hover,
+    a:focus {
+        text-decoration: none;
+    }
+
+    .form-control {
+        background: #ffffff;
+        border-color: #545454;
+    }
+
+    .form-control:focus {
+        background: #ffffff;
+    }
+
+    footer {
+        background: #212529;
+    }
+
+    /*=============
+ 
+==================*/
+    /* ==========================================
+    Rating stars
+  ========================================== */
+    .checked {
+        color: orange;
+    }
+</style>
+{% for adddress in adddress %}
+<div class="modal fade" id="exampleModalupdate{{smartpayment.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'add'%}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <br>
+                    <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typeEmailX">
+                            <h3>Dress Name</h3>
+                        </label>
+                        <br>
+                        <input type="text" id="proname" name="proname" class="form-control form-control-lg"
+                            placeholder="Enter Dress Name" required>
+
+                    </div>
+                    <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typeEmailX">
+                            <h3>Dress Image</h3>
+                        </label>
+                        <input type="file" id="dressfiles" name="dressfiles" 
+                            class="form-control form-control-lg" 
+                            required />
+                    </div>
+
+
+                    <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typeEmailX">
+                            <h3>Dress Anount</h3>
+                        </label>
+                        <input type="text" id="Dressamount" name="Dressamount" placeholder="Enter dress amount"
+                            class="form-control form-control-lg" 
+                            required />
+                    </div>
+                    <br>
+                    <input type="submit" class="btn btn-outline-success" value="Upload">
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endfor %}
